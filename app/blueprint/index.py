@@ -12,7 +12,6 @@ index_bp = Blueprint('index', __name__)
 
 @index_bp.route('/', methods=['GET'])
 def index():
-    collect_course_data()
     date_ = db.session.query(
         func.distinct(CourseCount.update_at).label('update_at')
     ).order_by(
