@@ -54,3 +54,14 @@ def index():
             d[0], d[1], is_connect_nones=True
         )
     return Markup(c.render_embed())
+
+
+@index_bp.route('/test_apm', methods=['GET'])
+def test_apm():
+    from app import apm
+    try:
+        1 / 0
+    except ZeroDivisionError:
+        apm.capture_message('caught a zero division error')
+        apm.capture_exception()
+
