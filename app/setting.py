@@ -14,6 +14,13 @@ class ConfigDev:
         },
     }
 
+    ELASTIC_APM = {
+        'SERVICE_NAME': 'tencent-test',
+        'SECRET_TOKEN': '',
+        'SERVER_URL': 'http://172.16.100.11:8200',
+        'DEBUG': True
+    }
+
 
 class ConfigProd:
     SQLALCHEMY_DATABASE_URI = 'sqlite:///../data'
@@ -28,8 +35,15 @@ class ConfigProd:
         },
     }
 
+    ELASTIC_APM = {
+        'SERVICE_NAME': 'tencent-test',
+        'SECRET_TOKEN': '',
+        'SERVER_URL': 'http://172.16.100.11:8200',
+        'DEBUG': True
+    }
 
-Config = ConfigDev
+
+config = ConfigDev()
 
 
 

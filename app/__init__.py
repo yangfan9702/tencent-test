@@ -1,10 +1,13 @@
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
+from elasticapm.contrib.flask import ElasticAPM
 
 
-from .setting import Config
+from .setting import config
 from .blueprint import index_bp
 from .task import celery
+
+apm = ElasticAPM()
 
 
 def register_errors(app):
@@ -28,11 +31,12 @@ def register_blueprints(app):
 def create_app():
     app = Flask('app')
     db = SQLAlchemy()
-    app.config.from_object(Config)
+    app.config.from_object(config)
 
     db.init_app(app)
     register_errors(app)
     register_blueprints(app)
+    apm.init_app(app)
 
     return app
 
